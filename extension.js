@@ -15,17 +15,45 @@ function activate(context) {
 	console.log('Congratulations, your extension "html-bootstrap-easytags" is now active!');
 	// Hello World QuickPick panelini açan komutu oluşturalım
 	let disposable = vscode.commands.registerCommand('html-bootstrap-easytags.bootstrapCodes', async () => {
-		const selectedValue = await vscode.window.showQuickPick(['BS5 Home Page', 'BS5 Containers', 'BS5 Grid Basic', 'BS5 Typography', 'BS5 Colors', 'BS5 Tables', 'BS5 Images', 'BS5 Jumbotron', 'BS5 Alerts', 'BS5 Buttons', 'BS5 Button Groups', 'BS5 Badges', 'BS5 Progress Bars', 'BS5 Spinners', 'BS5 Pagination', 'BS5 List Groups', 'BS5 Cards', 'BS5 Dropdowns', 'BS5 Collapse', 'BS5 Navs', 'BS5 Navbar', 'BS5 Carousel', 'BS5 Modal', 'BS5 Tooltip', 'BS5 Popover', 'BS5 Toast', 'BS5 Scrollspy', 'BS5 Offcanvas', 'BS5 Utilities', 'BS5 Flex'], {
+		const selectedValue = await vscode.window.showQuickPick(['BS5 Home Page', 'BS5 Containers', 'BS5 Grid Basic', 'BS5 Typography', 'BS5 Colors', 'BS5 Tables', 'BS5 Images', 'BS5 Jumbotron', 'BS5 Alerts', 'BS5 Buttons', 'BS5 Button Groups', 'BS5 Badges', 'BS5 Progress Bars', 'BS5 Spinners', 'BS5 Pagination', 'BS5 List Groups', 'BS5 Cards', 'BS5 Dropdowns', 'BS5 Collapse', 'BS5 Navs', 'BS5 Navbar', 'BS5 Carousel', 'BS5 Modal', 'BS5 Tooltip', 'BS5 Popover', 'BS5 Toast', 'BS5 Scrollspy', 'BS5 Offcanvas', 'BS5 Utilities', 'BS5 Flex', 'BS5 Forms', 'BS5 Select Menus', 'BS5 Checks and Radios', 'BS5 Range', 'BS5 Input Groups', 'BS5 Floating Labels', 'BS5 Form Validation', 'BS5 Grid'], {
 			canPickMany: false,
 			placeHolder: 'Select a value'
 		});
 
 		if (selectedValue === 'BS5 Home Page') {
-			const selectedValue1 = await vscode.window.showQuickPick(['Example Home Page',], {
+			const selectedValue1 = await vscode.window.showQuickPick(['Null Template', 'Example Home Page', 'Basic Template'], {
 				canPickMany: false,
 				placeHolder: 'Select a value'
 			});
-			if (selectedValue1 === 'Example Home Page') {
+			if (selectedValue1 === 'Null Template') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<!DOCTYPE html>
+				<html lang="en">
+				
+				<head>
+					<title>Bootstrap Example</title>
+					<meta charset="utf-8">
+					<meta name="viewport" content="width=device-width, initial-scale=1">
+					<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+					<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+				</head>
+				
+				<body>
+				
+				</body>
+				
+				</html>`;
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Example Home Page') {
 				const editor = vscode.window.activeTextEditor;
 				if (!editor) {
 					vscode.window.showErrorMessage('No active editor!');
@@ -57,6 +85,107 @@ function activate(context) {
 				  </div>
 				</div>
 			  </div>`;
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Basic Template') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<!DOCTYPE html>
+				<html lang="en">
+				<head>
+				  <title>Bootstrap 5 Website Example</title>
+				  <meta charset="utf-8">
+				  <meta name="viewport" content="width=device-width, initial-scale=1">
+				  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+				  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+				  <style>
+				  .fakeimg {
+					height: 200px;
+					background: #aaa;
+				  }
+				  </style>
+				</head>
+				<body>
+				
+				<div class="p-5 bg-primary text-white text-center">
+				  <h1>My First Bootstrap 5 Page</h1>
+				  <p>Resize this responsive page to see the effect!</p> 
+				</div>
+				
+				<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+				  <div class="container-fluid">
+					<ul class="navbar-nav">
+					  <li class="nav-item">
+						<a class="nav-link active" href="#">Active</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link disabled" href="#">Disabled</a>
+					  </li>
+					</ul>
+				  </div>
+				</nav>
+				
+				<div class="container mt-5">
+				  <div class="row">
+					<div class="col-sm-4">
+					  <h2>About Me</h2>
+					  <h5>Photo of me:</h5>
+					  <div class="fakeimg">Fake Image</div>
+					  <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+					  <h3 class="mt-4">Some Links</h3>
+					  <p>Lorem ipsum dolor sit ame.</p>
+					  <ul class="nav nav-pills flex-column">
+						<li class="nav-item">
+						  <a class="nav-link active" href="#">Active</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link disabled" href="#">Disabled</a>
+						</li>
+					  </ul>
+					  <hr class="d-sm-none">
+					</div>
+					<div class="col-sm-8">
+					  <h2>TITLE HEADING</h2>
+					  <h5>Title description, Dec 7, 2020</h5>
+					  <div class="fakeimg">Fake Image</div>
+					  <p>Some text..</p>
+					  <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+				
+					  <h2 class="mt-5">TITLE HEADING</h2>
+					  <h5>Title description, Sep 2, 2020</h5>
+					  <div class="fakeimg">Fake Image</div>
+					  <p>Some text..</p>
+					  <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+					</div>
+				  </div>
+				</div>
+				
+				<div class="mt-5 p-4 bg-dark text-white text-center">
+				  <p>Footer</p>
+				</div>
+				
+				</body>
+				</html>
+				`;
 				editor.edit((editBuilder) => {
 					editBuilder.insert(selection.start, text);
 				});
@@ -9310,6 +9439,1916 @@ function activate(context) {
 				editor.edit((editBuilder) => {
 					editBuilder.insert(selection.start, text);
 				});
+
+			}
+		} else if (selectedValue === 'BS5 Forms') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Stacked Form', 'Textarea', 'Form Row/Grid (Inline Forms)', 'Form Control Size', 'Disabled and Readonly', 'Plain text Inputs', 'Color Picker'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Stacked Form') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Stacked form</h2>
+				<form action="/action_page.php">
+				  <div class="mb-3 mt-3">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+				  </div>
+				  <div class="mb-3">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+				  </div>
+				  <div class="form-check mb-3">
+					<label class="form-check-label">
+					  <input class="form-check-input" type="checkbox" name="remember"> Remember me
+					</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Textarea') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Textarea</h2>
+				<p>Use the .form-control class to style textareas as well:</p>
+				<form action="/action_page.php">
+				  <div class="mb-3 mt-3">
+					<label for="comment">Comments:</label>
+					<textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Form Row/Grid (Inline Forms)') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Inline Forms</h2>
+				<p>If you want your form elements to appear side by side, use .row and .col:</p>
+				<form>
+				  <div class="row">
+					<div class="col">
+					  <input type="text" class="form-control" placeholder="Enter email" name="email">
+					</div>
+					<div class="col">
+					  <input type="password" class="form-control" placeholder="Enter password" name="pswd">
+					</div>
+				  </div>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Form Control Size') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Form Control Size</h2>
+				<p>You can change the size of .form-control inputs with .form-control-lg or .form-control-sm:</p>
+				<form>
+				  <input type="text" class="form-control form-control-lg" placeholder="Large input">
+				  <input type="text" class="form-control mt-3" placeholder="Normal input">
+				  <input type="text" class="form-control form-control-sm mt-3" placeholder="Small input">
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Disabled and Readonly') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Disabled and Readonly</h2>
+				<p>Use the disabled and/or readonly attributes to disable the input field:</p>
+				<form>
+				  <input type="text" class="form-control" placeholder="Normal input">
+				  <input type="text" class="form-control mt-3" placeholder="Disabled input" disabled>
+				  <input type="text" class="form-control mt-3" placeholder="Readonly input" readonly>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Plain text Inputs') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Plaintext</h2>
+				<p>Use the .form-control-plaintext class to style an input field without borders, but with correct marigins and padding:</p>
+				<form>
+				  <input type="text" class="form-control-plaintext" placeholder="Plaintext input">
+				  <input type="text" class="form-control mt-3" placeholder="Normal input">
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Color Picker') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Color Picker</h2>
+				<p>To style an input with type="color" properly, use the .form-control-color class:</p>
+				<form>
+				  <label for="myColor" class="form-label">Color picker</label>
+				  <input type="color" class="form-control form-control-color" id="myColor" value="#CCCCCC" title="Choose a color">
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Select Menus') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Select Menu', 'Select Menu Size', 'Disabled Select Menu', 'Data Lists'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Select Menu') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Select Menu</h2>
+				<p>To style a select menu in Bootstrap 5, add the .form-select class to the select element:</p>
+				<form action="/action_page.php">
+				  <label for="sel1" class="form-label">Select list (select one):</label>
+				  <select class="form-select" id="sel1" name="sellist1">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+				  </select>
+				  <br>
+				  
+				  <label for="sel2" class="form-label">Mutiple select list (hold shift to select more than one):</label>
+				  <select multiple class="form-select" id="sel2" name="sellist2">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				  </select>
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Select Menu Size') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Select Menu Size</h2>
+				<p>Use the .form-select-lg or .form-select-sm class to change the size of the select menu:</p>
+				<form>
+				 <select class="form-select form-select-lg">
+				   <option>1</option>
+				   <option>2</option>
+				   <option>3</option>
+				   <option>4</option>
+				 </select>
+				 
+				 <select class="form-select mt-3">
+				   <option>1</option>
+				   <option>2</option>
+				   <option>3</option>
+				   <option>4</option>
+				 </select>
+				 
+				 <select class="form-select form-select-sm mt-3">
+				   <option>1</option>
+				   <option>2</option>
+				   <option>3</option>
+				   <option>4</option>
+				 </select>
+				</form>    
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Disabled Select Menu') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Disabled Select Menu</h2>
+				<p>Use the disabled attribute to disable the select menu:</p>
+				<form>
+				 <select class="form-select" disabled>
+				   <option>1</option>
+				   <option>2</option>
+				   <option>3</option>
+				   <option>4</option>
+				 </select>
+				</form>    
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Data Lists') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Data List</h2>
+				<form action="/action_page.php">
+				  <label for="browser" class="form-label">Choose your browser from the list:</label>
+				  <input class="form-control" list="browsers" name="browser" id="browser">
+				  <datalist id="browsers">
+					<option value="Edge">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+					<option value="Safari">
+				  </datalist>    
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Checks and Radios') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Checkboxes', 'Radio buttons', 'Toggle Switches'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Checkboxes') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Checkboxes</h2>
+				<p>To style a checkbox, use a container element with a .form-check class, and add .form-check-label to labels, and .form-check-input to the input with type="checkbox".</p>
+				<p>The form below contains three checkboxes. The first option is checked by default, and the last option is disabled:</p>
+				<form action="/action_page.php">
+				  <div class="form-check">
+					<input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
+					<label class="form-check-label" for="check1">Option 1</label>
+				  </div>
+				  <div class="form-check">
+					<input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
+					<label class="form-check-label" for="check2">Option 2</label>
+				  </div>
+				  <div class="form-check">
+					<input type="checkbox" class="form-check-input" disabled>
+					<label class="form-check-label">Option 3</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Radio buttons') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Radio buttons</h2>
+				<p>The form below contains three radio buttons. The first option is checked by default, and the last option is disabled:</p>
+				<form action="/action_page.php">
+				  <div class="form-check">
+					<input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>
+					<label class="form-check-label" for="radio1">Option 1</label>
+				  </div>
+				  <div class="form-check">
+					<input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">
+					<label class="form-check-label" for="radio2">Option 2</label>
+				  </div>
+				  <div class="form-check">
+					<input type="radio" class="form-check-input" disabled>
+					<label class="form-check-label">Option 3</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Toggle Switches') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Toggle Switch</h2>
+				<p>Try to submit the form with and without toggling the switch.</p>
+				<form action="/action_page.php">
+				  <div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
+					<label class="form-check-label" for="mySwitch">Dark Mode</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Range') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Custom Range', 'Steps', 'Min and Max'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Custom Range') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Custom Range</h2>
+				<p>To create a custom range menu, add the .form-range class to the input element with type="range":</p>
+				<form action="/action_page.php">
+				  <label for="customRange" class="form-label">Custom range</label>
+				  <input type="range" class="form-range" id="customRange" name="points">
+				  
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Steps') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Steps in a Range</h2>
+				<p>By default, the interval between the range numbers is 1. You can change it by using the step attribute:</p>
+				<form action="/action_page.php">
+				  <label for="customRange" class="form-label">Custom range</label>
+				  <input type="range" class="form-range" id="customRange" step="10" name="points">
+				  
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Min and Max') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Min and Max Range</h2>
+				<p>Use the min and/or max attribute to specify the minimum/maximum value of a range:</p>
+				<form action="/action_page.php">
+				  <label for="customRange" class="form-label">Custom range</label>
+				  <input type="range" class="form-range" id="customRange" name="points" min="0" max="4">
+				  
+				  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Input Groups') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Input Groups', 'Input Group Size', 'Multiple Inputs and Helpers', 'Input Group with Checkboxes and Radios', 'Input Group Buttons', 'Input Group with Dropdown Button'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Input Groups') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Input Group</h2>
+				<p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind the input field as a "help text".</p>
+				<p>Use the .input-group-text class to style the specified help text.</p>
+				
+				<form action="/action_page.php">
+				  <div class="input-group mb-3">
+					<span class="input-group-text">@</span>
+					<input type="text" class="form-control" placeholder="Username" name="usrname">
+				  </div>
+			  
+				  <div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Your Email" name="email">
+					<span class="input-group-text">@example.com</span>
+				  </div>
+				  
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Input Group Size') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Input Group Size</h2>
+				<p>Use the .input-group-sm class for small input groups and .input-group-lg for large inputs groups:</p>
+				
+				<div class="input-group input-group-sm mb-3">
+				  <span class="input-group-text">Small</span>
+				  <input type="text" class="form-control">
+				</div>
+				<div class="input-group mb-3">
+				  <span class="input-group-text">Default</span>
+				  <input type="text" class="form-control">
+				</div>
+				<div class="input-group input-group-lg mb-3">
+				  <span class="input-group-text">Large</span>
+				  <input type="text" class="form-control">
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Multiple Inputs and Helpers') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Multiple Inputs and Helpers</h2>
+				<p>Add multiple inputs or addons:</p>
+				
+				<!-- Multiple inputs -->
+				<div class="input-group mb-3">
+				  <span class="input-group-text">Person</span>
+				  <input type="text" class="form-control" placeholder="First Name">
+				  <input type="text" class="form-control" placeholder="Last Name">
+				</div>
+			  
+				<!-- Multiple addons / help text -->
+				<div class="input-group mb-3">
+				  <span class="input-group-text">One</span>
+				  <span class="input-group-text">Two</span>
+				  <span class="input-group-text">Three</span>
+				  <input type="text" class="form-control">
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Input Group with Checkboxes and Radios') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h3>Input Group with Checkboxes and Radios</h3>
+				<p>You can also use checkboxes or radio buttons instead of text:</p>
+				
+				<!-- Multiple inputs -->
+				<div class="input-group mb-3">
+				  <div class="input-group-text">
+					<input type="checkbox">
+				  </div>
+				  <input type="text" class="form-control" placeholder="Some text">
+				</div>
+			  
+				<div class="input-group mb-3">
+				  <div class="input-group-text">
+					<input type="radio">
+				  </div>
+				  <input type="text" class="form-control" placeholder="Some text">
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Input Group Buttons') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h3>Input Group Buttons</h3>
+				
+				<div class="input-group mb-3 mt-3">
+				  <button class="btn btn-outline-primary" type="button">Basic Button</button>
+				  <input type="text" class="form-control" placeholder="Some text">
+				</div>
+			  
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="Search">
+				  <button class="btn btn-success" type="submit">Go</button> 
+				</div>
+			  
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="Something clever..">
+				  <button class="btn btn-primary" type="button">OK</button> 
+				  <button class="btn btn-danger" type="button">Cancel</button> 
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Input Group with Dropdown Button') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h3>Input Groups with Dropdown Button</h3>
+				<p>Add a dropdown button in the input group. Note that you don't need the .dropdown wrapper, as you normally would.</p>
+				  
+				<div class="input-group mt-3 mb-3">
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+					Dropdown button
+				  </button>
+				  <ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="#">Link 1</a></li>
+					<li><a class="dropdown-item" href="#">Link 2</a></li>
+					<li><a class="dropdown-item" href="#">Link 3</a></li>
+				  </ul>
+				  <input type="text" class="form-control" placeholder="Username">
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Floating Labels') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Floating Labels / Animated Labels', 'Textarea', 'Select Menus'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Floating Labels / Animated Labels') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Floating Labels - Inputs</h2>
+				<p>Click inside the input field to see the floating label effect:</p>
+				<form action="/action_page.php">
+				  <div class="form-floating mb-3 mt-3">
+					<input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+					<label for="email">Email</label>
+				  </div>
+				  <div class="form-floating mt-3 mb-3">
+					<input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+					<label for="pwd">Password</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Textarea') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Floating Labels - Textarea</h2>
+				<p>Click inside the textarea to see the floating label effect:</p>
+				<form action="/action_page.php">
+				  <div class="form-floating mb-3 mt-3">
+					<textarea class="form-control" id="comment" name="text" placeholder="Comment goes here"></textarea>
+					<label for="comment">Comments</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Select Menus') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h2>Floating Labels - Select</h2>
+				<p>You can also use "floating-labels" on select menus. However, they will not float/get animated. The label will always appear in the top left corner, inside the select menu:</p>
+				<form action="/action_page.php">
+				  <div class="form-floating mb-3 mt-3">
+					<select class="form-select" id="sel1" name="sellist">
+					  <option>1</option>
+					  <option>2</option>
+					  <option>3</option>
+					  <option>4</option>
+					</select>
+					<label for="sel1" class="form-label">Select list (select one):</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Form Validation') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Form Validation'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Form Validation') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container mt-3">
+				<h3>Form Validation</h3>
+				<p>Try to submit the form.</p>
+				  
+				<form action="/action_page.php" class="was-validated">
+				  <div class="mb-3 mt-3">
+					<label for="uname" class="form-label">Username:</label>
+					<input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				  </div>
+				  <div class="mb-3">
+					<label for="pwd" class="form-label">Password:</label>
+					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Please fill out this field.</div>
+				  </div>
+				  <div class="form-check mb-3">
+					<input class="form-check-input" type="checkbox" id="myCheck"  name="remember" required>
+					<label class="form-check-label" for="myCheck">I agree on blabla.</label>
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Check this checkbox to continue.</div>
+				  </div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			}
+		} else if (selectedValue === 'BS5 Grid') {
+
+			const selectedValue1 = await vscode.window.showQuickPick(['Grid System', 'Stacked/Horizontal', 'Grid XSmall', 'Grid Small', 'Grid Medium', 'Grid Large', 'Grid XLarge', 'Grid XXL', 'Grid Examples'], {
+				canPickMany: false,
+				placeHolder: 'Select a value'
+			});
+			if (selectedValue1 === 'Grid System') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<div class="container-fluid mt-3">
+				<h1>Basic Grid Structure</h1>
+				<p>Resize the browser window to see the effect.</p>
+				<p>The first, second and third row will automatically stack on top of each other when the screen is less than 576px wide.</p>
+				
+				<!-- Control the column width, and how they should appear on different devices -->
+				<div class="row">
+				  <div class="col-sm-6 bg-primary text-white">50%</div>
+				  <div class="col-sm-6 bg-dark text-white">50%</div>
+				</div>
+				<br>
+				  
+				<div class="row">
+				  <div class="col-sm-4 bg-primary text-white">33.33%</div>
+				  <div class="col-sm-4 bg-dark text-white">33.33%</div>
+				  <div class="col-sm-4 bg-primary text-white">33.33%</div>
+				</div>
+				<br>
+			  
+				<!-- Or let Bootstrap automatically handle the layout -->
+				<div class="row">
+				  <div class="col-sm bg-primary text-white">25%</div>
+				  <div class="col-sm bg-dark text-white">25%</div>
+				  <div class="col-sm bg-primary text-white">25%</div>
+				  <div class="col-sm bg-dark text-white">25%</div>
+				</div>
+				<br>
+				  
+				<div class="row">
+				  <div class="col bg-primary text-white">25%</div>
+				  <div class="col bg-dark text-white">25%</div>
+				  <div class="col bg-primary text-white">25%</div>
+				  <div class="col bg-dark text-white">25%</div>
+				</div>
+			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Stacked/Horizontal') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Stacked-to-horizontal', 'Responsive Container', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Stacked-to-horizontal') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Grid Example</h1>
+					<p>This example demonstrates a 50%/50% split on small, medium, large, xlarge and xxlarge devices. On extra small devices, it will stack (100% width).</p>      
+					<p>Resize the browser window to see the effect.</p> 
+					<div class="row">
+					  <div class="col-sm-6 bg-primary text-white p-3">
+						Lorem ipsum...
+					  </div>
+					  <div class="col-sm-6 bg-dark text-white p-3">
+						Sed ut perspiciatis...
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Responsive Container') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container mt-3">
+					<h1>Grid Example</h1>
+					<p>This example demonstrates a 50%/50% split on small, medium, large, xlarge and xxlarge devices. On extra small devices, it will stack (100% width).</p>      
+					<p>Resize the browser window to see the effect.</p> 
+					<div class="row">
+					  <div class="col-sm-6 bg-primary text-white p-3">
+						Lorem ipsum...
+					  </div>
+					  <div class="col-sm-6 bg-dark text-white p-3">
+						Sed ut perspiciatis...
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-size</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>Two columns: 50% width on all screens, except for extra small (100% width on screens less than <strong>576px</strong> wide)</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm bg-primary text-white p-3">1 of 2</div>
+						<div class="col-sm bg-dark text-white p-3">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<p>Four columns: 25% width on all screens, except for extra small (100% width on screens less than <strong>576px</strong> wide)</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm bg-primary text-white p-3">1 of 4</div>
+						<div class="col-sm bg-dark text-white p-3">2 of 4</div>
+						<div class="col-sm bg-primary text-white p-3">3 of 4</div>
+						<div class="col-sm bg-dark text-white p-3">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid XSmall') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Extra Small Grid Example', 'Split Example', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Extra Small Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Extra Small Grid (Auto Layout)</h1>
+					<p>The following example will result in a 25%/75% split on all devices.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-3 bg-primary text-white p-3">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-9 bg-dark text-white p-3">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Split Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Extra Small Grid</h1>
+					<p>The following example will result in a 33.3%/66.6% split on all devices.</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-4 bg-primary text-white p-3">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-8 bg-dark text-white p-3">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+					<br>
+					
+					<p>This example will result in a 50%/50% split on all devices.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-6 bg-primary text-white p-3">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-6 bg-dark text-white p-3">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns for all devices: just use the <code>.col</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col bg-primary text-white p-3">1 of 2</div>
+						<div class="col bg-dark text-white p-3">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col bg-primary text-white p-3">1 of 4</div>
+						<div class="col bg-dark text-white p-3">2 of 4</div>
+						<div class="col bg-primary text-white p-3">3 of 4</div>
+						<div class="col bg-dark text-white p-3">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid Small') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Small Grid Example', 'Split Example', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Small Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Small Grid</h1>
+					<p>The following example will result in a 25%/75% split on small, medium, large, xlarge and xxlarge devices (<strong>576px and above</strong>). On extra small devices, it will stack (100% width).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-3 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-9 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Split Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Small Grid</h1>
+					<p>The following example will result in a 33.3%/66.6% split on small, medium, large and xlarge devices (<strong>576px and above</strong>). On extra small devices, it will stack (100% width).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-4 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-8 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+					<br>
+					
+					<p>This example will result in a 50%/50% split on small, medium, large and xlarge devices (<strong>576px and above</strong>). On extra small devices, it will stack (100% width).</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Responsive Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-sm</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>On extra small screens (<strong>less than 576px</strong>), the columns will stack horizontally.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm bg-primary text-white">1 of 2</div>
+						<div class="col-sm bg-dark text-white">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm bg-primary text-white">1 of 4</div>
+						<div class="col-sm bg-dark text-white">2 of 4</div>
+						<div class="col-sm bg-primary text-white">3 of 4</div>
+						<div class="col-sm bg-dark text-white">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid Medium') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Medium Grid Example', 'Using Only Medium', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Medium Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Medium Grid</h1>
+					<p>The following example will result in a 25%/75% split on small devices and a 50%/50% split on medium (and large, xlarge, xxlarge) devices. On extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-3 col-md-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-9 col-md-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Using Only Medium') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Medium Grid</h1>
+					<p>The following example will result in a 50%/50% split on medium, large, xlarge and xxlarge devices (<strong>768px and above</strong>). On small (and extra small) devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-md-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-md-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Responsive Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-md</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>If the screen size is <strong>less than 768px</strong>, the columns will stack horizontally.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-md bg-primary text-white">1 of 2</div>
+						<div class="col-md bg-dark text-white">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-md bg-primary text-white">1 of 4</div>
+						<div class="col-md bg-dark text-white">2 of 4</div>
+						<div class="col-md bg-primary text-white">3 of 4</div>
+						<div class="col-md bg-dark text-white">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid Large') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Large Grid Example', 'Using Only Large', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Large Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Large Grid</h1>
+					<p>The following example will result in a 25%/75% split on small devices, a 50%/50% split on medium devices, and a 33%/66% split on large, xlarge and xxlarge devices. On extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-3 col-md-6 col-lg-4 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-9 col-md-6 col-lg-8 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Using Only Large') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Large Grid</h1>
+					<p>The following example will result in a 50%/50% split on large, xlarge and xxlarge devices (<strong>992px and above</strong>). On medium, small and extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-lg-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-lg-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Responsive Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-lg</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>If the screen size is <strong>less than 992px</strong>, the columns will stack horizontally.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-lg bg-primary text-white">1 of 2</div>
+						<div class="col-lg bg-dark text-white">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-lg bg-primary text-white">1 of 4</div>
+						<div class="col-lg bg-dark text-white">2 of 4</div>
+						<div class="col-lg bg-primary text-white">3 of 4</div>
+						<div class="col-lg bg-dark text-white">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid XLarge') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Extra Large Grid Example', 'Using Only XLarge', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Extra Large Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>XLarge Grid</h1>
+					<p>The following example will result in a 25%/75% split on small devices, a 50%/50% split on medium devices, a 33%/66% split on large devices and a 20%/80% on xlarge and xxlarge devices. On extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-sm-3 col-md-6 col-lg-4 col-xl-2 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-sm-9 col-md-6 col-lg-8 col-xl-10 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Using Only XLarge') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>XLarge Grid</h1>
+					<p>The following example will result in a 50%/50% split on xlarge devices (<strong>1200px and above</strong>). On large, medium, small and extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xl-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-xl-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Responsive Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-xl</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>If the screen size is <strong>less than 1200px</strong>, the columns will stack horizontally.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xl bg-primary text-white">1 of 2</div>
+						<div class="col-xl bg-dark text-white">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xl bg-primary text-white">1 of 4</div>
+						<div class="col-xl bg-dark text-white">2 of 4</div>
+						<div class="col-xl bg-primary text-white">3 of 4</div>
+						<div class="col-xl bg-dark text-white">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid XXL') {
+				const selectedValue2 = await vscode.window.showQuickPick(['XXL Grid Example', 'Using Only XXL', 'Auto Layout Columns'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'XXL Grid Example') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>XXL Grid</h1>
+					<p>The following example will result in a 50%/50% split on medium, large and extra large devices, and a 25%/75% split on XXL devices. On 
+					small and extra small devices, it will automatically stack (100%):</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-md-6 col-xxl-3 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-md-6 col-xxl-9 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Using Only XXL') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>XXL Grid</h1>
+					<p>The following example will result in a 50%/50% split on XXL devices (<strong>1400px and above</strong>). On extra large, large, medium, small and extra small devices, it will automatically stack (100%).</p>
+					<p>Resize the browser window to see the effect.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xxl-6 bg-primary text-white">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-xxl-6 bg-dark text-white">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Auto Layout Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Responsive Auto Layout Columns</h1>
+					<p>In Bootstrap 5, there is an easy way to create equal width columns: just use the <code>.col-xxl</code> class on a specified number of col elements. Bootstrap will recognize how many columns there are, and each column will get the same width.</p>
+					<p>If the screen size is <strong>less than 1400px</strong>, the columns will stack horizontally.</p>
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xxl bg-primary text-white">1 of 2</div>
+						<div class="col-xxl bg-dark text-white">2 of 2</div>
+					  </div>  
+					</div>
+					<br>
+					
+					<div class="container-fluid">
+					  <div class="row">
+						<div class="col-xxl bg-primary text-white">1 of 4</div>
+						<div class="col-xxl bg-dark text-white">2 of 4</div>
+						<div class="col-xxl bg-primary text-white">3 of 4</div>
+						<div class="col-xxl bg-dark text-white">4 of 4</div>
+					  </div>  
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
+
+			} else if (selectedValue1 === 'Grid Examples') {
+				const selectedValue2 = await vscode.window.showQuickPick(['Three Equal Columns', 'Three Equal Columns Using Numbers', 'Three Unequal columns', 'Setting One Column Width', 'More Equal Columns', 'Row Cols', 'More Unequal Columns', 'Equal Height', 'Nested Columns', 'Stacked to Horizontal', 'Mix and Match', 'No Gutters'], {
+					canPickMany: false,
+					placeHolder: 'Select a value'
+				});
+				if (selectedValue2 === 'Three Equal Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Three Equal Columns</h2>
+					<p>Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns). In the example below, we use three col elements, which gets a width of 33.33% each.</p>
+					<div class="row">
+					  <div class="col bg-success">.col</div>
+					  <div class="col bg-warning">.col</div>
+					  <div class="col bg-success">.col</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Three Equal Columns Using Numbers') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Three Equal Columns</h2>
+					<p>You can also use numbers to control the column width. Just make sure that the sum always adds up to 12:</p>
+					<div class="row">
+					  <div class="col-4 bg-success">.col-4</div>
+					  <div class="col-4 bg-warning">.col-4</div>
+					  <div class="col-4 bg-success">.col-4</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Three Unequal columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Three Unequal Columns</h2>
+					<p>To create unequal columns, you have to use numbers. The following example will create a 25%/50%/25% split:</p>
+					<div class="row">
+					  <div class="col-3 bg-success">.col-3</div>
+					  <div class="col-6 bg-warning">.col-6</div>
+					  <div class="col-3 bg-success">.col-3</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Setting One Column Width') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Three Unequal Columns</h2>
+					<p>It is enough to only set the width of one column, and have the sibling columns automatically resize around it. The following example will create a 25%/50%/25% split:</p>
+					<div class="row">
+					  <div class="col bg-success">.col</div>
+					  <div class="col-6 bg-warning">.col-6</div>
+					  <div class="col bg-success">.col</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'More Equal Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>More Equal Columns</h2>
+					<div class="row">
+					  <div class="col bg-success">1 of 2</div>
+					  <div class="col bg-warning">2 of 2</div>
+					</div>
+					<br>
+					<div class="row">
+					  <div class="col bg-success">1 of 4</div>
+					  <div class="col bg-warning">2 of 4</div>
+					  <div class="col bg-success">3 of 4</div>
+					  <div class="col bg-warning">4 of 4</div>
+					</div>
+					<br>
+					<div class="row">
+					  <div class="col bg-success">1 of 6</div>
+					  <div class="col bg-warning">2 of 6</div>
+					  <div class="col bg-success">3 of 6</div>
+					  <div class="col bg-warning">4 of 6</div>
+					  <div class="col bg-success">5 of 6</div>
+					  <div class="col bg-warning">6 of 6</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Row Cols') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Row Cols</h2>
+					<p>The .row-cols-* classes are used to set the number of columns that should appear next to each other.</p>
+				  
+					<div class="row row-cols-1">
+					  <div class="col bg-success">1 of 2</div>
+					  <div class="col bg-warning">2 of 2</div>
+					</div>
+					<br>
+					<div class="row row-cols-2">
+					  <div class="col bg-success">1 of 4</div>
+					  <div class="col bg-warning">2 of 4</div>
+					  <div class="col bg-success">3 of 4</div>
+					  <div class="col bg-warning">4 of 4</div>
+					</div>
+					<br>
+					<div class="row row-cols-3">
+					  <div class="col bg-success">1 of 6</div>
+					  <div class="col bg-warning">2 of 6</div>
+					  <div class="col bg-success">3 of 6</div>
+					  <div class="col bg-warning">4 of 6</div>
+					  <div class="col bg-success">5 of 6</div>
+					  <div class="col bg-warning">6 of 6</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'More Unequal Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>More Unequal Columns</h2>
+					<div class="row">
+					  <div class="col-8 bg-success">1 of 2</div>
+					  <div class="col-4 bg-warning">2 of 2</div>
+					</div>
+					<br>
+					<div class="row">
+					  <div class="col-2 bg-success">1 of 4</div>
+					  <div class="col-2 bg-warning">2 of 4</div>
+					  <div class="col-2 bg-success">3 of 4</div>
+					  <div class="col-6 bg-warning">4  of 4</div>
+					</div>
+					<br>
+					<div class="row">
+					  <div class="col-4 bg-success">1 of 4</div>
+					  <div class="col-6 bg-warning">2 of 4</div>
+					  <div class="col bg-success">3 of 4</div>
+					  <div class="col bg-warning">4  of 4</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Equal Height') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Equal Height</h2>
+					<p>If one of the column is taller than the other, the rest will follow.</p>
+				  </div>
+				  
+				  <div class="container-fluid">
+					<div class="row">
+					  <div class="col bg-success">Lorem ipsum dolor sit amet, cibo sensibus interesset no sit. Et dolor possim volutpat qui. No malis tollit iriure eam, et vel tale zril blandit, rebum vidisse nostrum qui eu. No nostrud dolorem legendos mea, ea eum mucius oporteat platonem.Eam an case scribentur, ei clita causae cum, alia debet eu vel.</div>
+					  <div class="col bg-warning">.col</div>
+					  <div class="col bg-success">.col</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Nested Columns') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h2>Nested Columns</h2>
+					<p>Add columns inside other columns:</p>
+				  </div>
+				  
+				  <div class="container-fluid">
+					<div class="row">
+					  <div class="col-8 bg-warning p-4">
+						.col-8
+						<div class="row">
+						  <div class="col-6 bg-light p-2">.col-6</div>
+						  <div class="col-6 bg-secondary p-2">.col-6</div>
+						</div>
+					  </div>
+					  <div class="col-4 bg-success p-4">.col-4</div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Stacked to Horizontal') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Stacked to Horizontal</h1>
+					<p>Resize the browser window to see the effect.</p> 
+					<p>This example demonstrates a 75%/25% split on small, medium, large and xlarge devices. On extra small devices, it will stack (100% width).</p>      
+					<div class="container-fluid">     
+					  <div class="row">
+						<div class="col-sm-9 bg-success">col-sm-9</div>
+						<div class="col-sm-3 bg-warning">col-sm-3</div>
+					  </div>
+					</div>
+					<br>
+					<p>This example demonstrates a 33% split on small, medium, large and xlarge devices. On extra small devices, it will stack (100% width).</p>      
+					<div class="container-fluid">     
+					  <div class="row">
+						<div class="col-sm bg-success">col-sm</div>
+						<div class="col-sm bg-warning">col-sm</div>
+						<div class="col-sm bg-success">col-sm</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'Mix and Match') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>Mix and Match</h1>
+					<p>Resize the browser window to see the effect.</p> 
+					<p>This example demonstrates a 50%/50% split on extra small devices and 75%/25% split on larger devices.</p>      
+					<div class="container-fluid">     
+					  <div class="row">
+						<div class="col-6 col-sm-9 bg-success">col-6 col-sm-9</div>
+						<div class="col-6 col-sm-3 bg-warning">col-6 col-sm-3</div>
+					  </div>
+					</div>
+					<br>
+					<p>This example demonstrates a 58%/42% split on extra small, small and medium devices and 66.3%/33.3% split on large and xlarge devices.</p>      
+					<div class="container-fluid">     
+					  <div class="row">
+						<div class="col-7 col-lg-8 bg-success">col-7 col-lg-8</div>
+						<div class="col-5 col-lg-4 bg-warning">col-5 col-lg-4</div>
+					  </div>
+					</div>
+					<br>
+					<p>This example demonstrates a 25%/75% split on small devices, a 50%/50% split on medium devices, and a 33%/66% split on large and xlarge devices. On extra small devices, it will automatically stack (100%).</p>      
+					<div class="container-fluid">     
+					  <div class="row">
+						<div class="col-sm-3 col-md-6 col-lg-4 bg-success">col-sm-3 col-md-6 col-lg-4</div>
+						<div class="col-sm-9 col-md-6 col-lg-8 bg-warning">col-sm-9 col-md-6 col-lg-8</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				} else if (selectedValue2 === 'No Gutters') {
+					const editor = vscode.window.activeTextEditor;
+					if (!editor) {
+						vscode.window.showErrorMessage('No active editor!');
+						return;
+					}
+
+					const selection = editor.selection;
+					const text = `<div class="container-fluid mt-3">
+					<h1>No Gutters</h1>
+					<p>To change the gutters (extra space) between columns, use any of the <code class="w3-codespan">.g-1|2|3|4|5</code> classes 
+					(<code class="w3-codespan">.g-4</code> is default). </p>
+					<p>To remove the gutters completely, use <code class="w3-codespan">.g-0</code>:</p>
+				  
+					<div class="container-fluid">
+					  <div class="row g-0">
+						<div class="col-3 bg-success">
+						  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+						  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						</div>
+						<div class="col-9 bg-warning">
+						  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						</div>
+					  </div>
+					</div>
+				  </div>`;
+
+					editor.edit((editBuilder) => {
+						editBuilder.insert(selection.start, text);
+					});
+				}
 
 			}
 		}
