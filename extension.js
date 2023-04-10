@@ -15,7 +15,7 @@ function activate(context) {
 	console.log('Congratulations, your extension "html-bootstrap-easytags" is now active!');
 	// Hello World QuickPick panelini açan komutu oluşturalım
 	let disposable = vscode.commands.registerCommand('html-bootstrap-easytags.bootstrapCodes', async () => {
-		const selectedValue = await vscode.window.showQuickPick(['BS5 Home Page', 'BS5 Containers', 'BS5 Grid Basic', 'BS5 Typography', 'BS5 Colors', 'BS5 Tables', 'BS5 Images', 'BS5 Jumbotron', 'BS5 Alerts', 'BS5 Buttons', 'BS5 Button Groups', 'BS5 Badges', 'BS5 Progress Bars', 'BS5 Spinners', 'BS5 Pagination', 'BS5 List Groups', 'BS5 Cards', 'BS5 Dropdowns', 'BS5 Collapse', 'BS5 Navs', 'BS5 Navbar', 'BS5 Carousel', 'BS5 Modal', 'BS5 Tooltip', 'BS5 Popover', 'BS5 Toast', 'BS5 Scrollspy', 'BS5 Offcanvas', 'BS5 Utilities', 'BS5 Flex', 'BS5 Forms', 'BS5 Select Menus', 'BS5 Checks and Radios', 'BS5 Range', 'BS5 Input Groups', 'BS5 Floating Labels', 'BS5 Form Validation', 'BS5 Grid','BS5 Footers'], {
+		const selectedValue = await vscode.window.showQuickPick(['BS5 Home Page', 'BS5 Containers', 'BS5 Grid Basic', 'BS5 Typography', 'BS5 Colors', 'BS5 Tables', 'BS5 Images', 'BS5 Jumbotron', 'BS5 Alerts', 'BS5 Buttons', 'BS5 Button Groups', 'BS5 Badges', 'BS5 Progress Bars', 'BS5 Spinners', 'BS5 Pagination', 'BS5 List Groups', 'BS5 Cards', 'BS5 Dropdowns', 'BS5 Collapse', 'BS5 Navs', 'BS5 Navbar', 'BS5 Carousel', 'BS5 Modal', 'BS5 Tooltip', 'BS5 Popover', 'BS5 Toast', 'BS5 Scrollspy', 'BS5 Offcanvas', 'BS5 Utilities', 'BS5 Flex', 'BS5 Forms', 'BS5 Select Menus', 'BS5 Checks and Radios', 'BS5 Range', 'BS5 Input Groups', 'BS5 Floating Labels', 'BS5 Form Validation', 'BS5 Grid', 'BS5 Footers'], {
 			canPickMany: false,
 			placeHolder: 'Select a value'
 		});
@@ -3837,7 +3837,7 @@ function activate(context) {
 			}
 		} else if (selectedValue === 'BS5 Navbar') {
 
-			const selectedValue1 = await vscode.window.showQuickPick(['BS5 Bootstrap Doc Navbar','BS5 Bootstrap Doc Navbar with Dropdown','BS5 Bootstrap Doc Navbar with Dropdown & Search Bar','Basic Navbar', 'Vertical Navbar', 'Centered Navbar', 'Colored Navbar', 'Brand / Logo', 'Navbar Text', 'Navbar With Dropdown', 'Navbar Forms and Buttons', 'Fixed Navigation Bar'], {
+			const selectedValue1 = await vscode.window.showQuickPick(['BS5 Bootstrap Doc Navbar', 'BS5 Bootstrap Doc Navbar with Dropdown', 'BS5 Bootstrap Doc Navbar with Dropdown & Search Bar', 'Basic Navbar', 'Vertical Navbar', 'Centered Navbar', 'Colored Navbar', 'Brand / Logo', 'Navbar Text', 'Navbar With Dropdown', 'Navbar Forms and Buttons', 'Fixed Navigation Bar'], {
 				canPickMany: false,
 				placeHolder: 'Select a value'
 			});
@@ -9579,7 +9579,7 @@ function activate(context) {
 			}
 		} else if (selectedValue === 'BS5 Forms') {
 
-			const selectedValue1 = await vscode.window.showQuickPick(['Stacked Form', 'Textarea', 'Form Row/Grid (Inline Forms)', 'Form Control Size', 'Disabled and Readonly', 'Plain text Inputs', 'Color Picker'], {
+			const selectedValue1 = await vscode.window.showQuickPick(['Stacked Form', 'Textarea', 'Form Row/Grid (Inline Forms)', 'Login Form', 'Form Control Size', 'Disabled and Readonly', 'Plain text Inputs', 'Color Picker'], {
 				canPickMany: false,
 				placeHolder: 'Select a value'
 			});
@@ -9661,6 +9661,189 @@ function activate(context) {
 				  </div>
 				</form>
 			  </div>`;
+
+				editor.edit((editBuilder) => {
+					editBuilder.insert(selection.start, text);
+				});
+
+			} else if (selectedValue1 === 'Login Form') {
+				const editor = vscode.window.activeTextEditor;
+				if (!editor) {
+					vscode.window.showErrorMessage('No active editor!');
+					return;
+				}
+
+				const selection = editor.selection;
+				const text = `<style>
+				body {font-family: Arial, Helvetica, sans-serif;}
+				
+				/* Full-width input fields */
+				input[type=text], input[type=password] {
+				  width: 100%;
+				  padding: 12px 20px;
+				  margin: 8px 0;
+				  display: inline-block;
+				  border: 1px solid #ccc;
+				  box-sizing: border-box;
+				}
+				
+				/* Set a style for all buttons */
+				button {
+				  background-color: #04AA6D;
+				  color: white;
+				  padding: 14px 20px;
+				  margin: 8px 0;
+				  border: none;
+				  cursor: pointer;
+				  width: 100%;
+				}
+				
+				button:hover {
+				  opacity: 0.8;
+				}
+				
+				/* Extra styles for the cancel button */
+				.cancelbtn {
+				  width: auto;
+				  padding: 10px 18px;
+				  background-color: #f44336;
+				}
+				
+				/* Center the image and position the close button */
+				.imgcontainer {
+				  text-align: center;
+				  margin: 24px 0 12px 0;
+				  position: relative;
+				}
+				
+				img.avatar {
+				  width: 40%;
+				  border-radius: 50%;
+				}
+				
+				.container {
+				  padding: 16px;
+				}
+				
+				span.psw {
+				  float: right;
+				  padding-top: 16px;
+				}
+				
+				/* The Modal (background) */
+				.modal {
+				  display: none; /* Hidden by default */
+				  position: fixed; /* Stay in place */
+				  z-index: 1; /* Sit on top */
+				  left: 0;
+				  top: 0;
+				  width: 100%; /* Full width */
+				  height: 100%; /* Full height */
+				  overflow: auto; /* Enable scroll if needed */
+				  background-color: rgb(0,0,0); /* Fallback color */
+				  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+				  padding-top: 60px;
+				}
+				
+				/* Modal Content/Box */
+				.modal-content {
+				  background-color: #fefefe;
+				  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+				  border: 1px solid #888;
+				  width: 80%; /* Could be more or less, depending on screen size */
+				}
+				
+				/* The Close Button (x) */
+				.close {
+				  position: absolute;
+				  right: 25px;
+				  top: 0;
+				  color: #000;
+				  font-size: 35px;
+				  font-weight: bold;
+				}
+				
+				.close:hover,
+				.close:focus {
+				  color: red;
+				  cursor: pointer;
+				}
+				
+				/* Add Zoom Animation */
+				.animate {
+				  -webkit-animation: animatezoom 0.6s;
+				  animation: animatezoom 0.6s
+				}
+				
+				@-webkit-keyframes animatezoom {
+				  from {-webkit-transform: scale(0)} 
+				  to {-webkit-transform: scale(1)}
+				}
+				  
+				@keyframes animatezoom {
+				  from {transform: scale(0)} 
+				  to {transform: scale(1)}
+				}
+				
+				/* Change styles for span and cancel button on extra small screens */
+				@media screen and (max-width: 300px) {
+				  span.psw {
+					 display: block;
+					 float: none;
+				  }
+				  .cancelbtn {
+					 width: 100%;
+				  }
+				}
+				</style>
+				</head>
+				<body>
+				
+				<h2>Modal Login Form</h2>
+				
+				<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+				
+				<div id="id01" class="modal">
+				  
+				  <form class="modal-content animate" action="/action_page.php" method="post">
+					<div class="imgcontainer">
+					  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					  <img src="img_avatar2.png" alt="Avatar" class="avatar">
+					</div>
+				
+					<div class="container">
+					  <label for="uname"><b>Username</b></label>
+					  <input type="text" placeholder="Enter Username" name="uname" required>
+				
+					  <label for="psw"><b>Password</b></label>
+					  <input type="password" placeholder="Enter Password" name="psw" required>
+						
+					  <button type="submit">Login</button>
+					  <label>
+						<input type="checkbox" checked="checked" name="remember"> Remember me
+					  </label>
+					</div>
+				
+					<div class="container" style="background-color:#f1f1f1">
+					  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+					  <span class="psw">Forgot <a href="#">password?</a></span>
+					</div>
+				  </form>
+				</div>
+				
+				<script>
+				// Get the modal
+				var modal = document.getElementById('id01');
+				
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+				</script>
+				
+				</body>`;
 
 				editor.edit((editBuilder) => {
 					editBuilder.insert(selection.start, text);
@@ -11489,7 +11672,7 @@ function activate(context) {
 			}
 		} else if (selectedValue === 'BS5 Footers') {
 
-			const selectedValue1 = await vscode.window.showQuickPick(['Basic Footer', 'Advanced Footer', 'White background and secondary icons', 'Copyright Footer', 'Links Footer', 'Text Footer','Forms Footer'], {
+			const selectedValue1 = await vscode.window.showQuickPick(['Basic Footer', 'Advanced Footer', 'White background and secondary icons', 'Copyright Footer', 'Links Footer', 'Text Footer', 'Forms Footer'], {
 				canPickMany: false,
 				placeHolder: 'Select a value'
 			});
@@ -12150,7 +12333,7 @@ function activate(context) {
 					editBuilder.insert(selection.start, text);
 				});
 
-			}else if (selectedValue1 === 'Forms Footer') {
+			} else if (selectedValue1 === 'Forms Footer') {
 				const editor = vscode.window.activeTextEditor;
 				if (!editor) {
 					vscode.window.showErrorMessage('No active editor!');
